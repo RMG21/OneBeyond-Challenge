@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using OneBeyondApi.Model;
+using Shouldly;
 
 namespace OneBeyondApi.DataAccess
 {
@@ -63,9 +64,11 @@ namespace OneBeyondApi.DataAccess
                 try
                 {
                     var borrowersWithActiveLoan = context.Borrowers
-                    .Include(x => x.Loans)?
+                    .Include(x => x.BookStocks)?
+                    .ThenInclude(x => x.Loan)?
                     .ThenInclude(x => x.Fine)?
-                    .Include(x => x.Loans)?
+                    .Include(x => x.BookStocks)?
+                    .ThenInclude(x => x.Loan)
                     .ThenInclude(x => x.Book)
                     .ThenInclude(x => x.Author)
                     .ToList();
@@ -74,10 +77,16 @@ namespace OneBeyondApi.DataAccess
                     {
                         foreach (var b in borrowersWithActiveLoan)
                         {
-                            if (b.Loans != null && b.Loans.Any(x => x.Active == true))
+                            //if (b.BookStocks?.Any(x => x.Loan != null) && b.Loans.Any(x => x.Active == true))
+
+                            if (b.BookStocks != null)
                             {
-                                returnList.Add(b);
+                                if (b.BookStocks.Any(x => x.Loan != null) && b.BookStocks.Any(x => x.Loan?.Active == true))
+                                {
+                                    returnList.Add(b);
+                                }
                             }
+
                         }
                         return returnList;
                     }

@@ -29,7 +29,14 @@ namespace OneBeyondApi.Controllers
         [Route("GetTotalFine")]
         public float GetTotalFine(Borrower borrower)
         {
-            return borrower.GetTotalFine(borrower.Loans);
+            //return borrower.GetTotalFine(borrower.Loans);
+            //get list of loans from all borrowers bookstacks
+            var listOfLoans = new List<Loan>();
+            foreach (var b in borrower.BookStocks)
+            {
+                listOfLoans.Add(b.Loan);
+            }
+            return borrower.GetTotalFine(listOfLoans);
         }
 
         [HttpPost]

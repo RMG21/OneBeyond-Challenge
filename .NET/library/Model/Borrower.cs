@@ -5,7 +5,9 @@
         public Guid Id { get; set; }
         public required string Name { get; set; }
         public required string EmailAddress { get; set; }
-        public List<Loan>? Loans { get; set; }
+        //public List<Loan>? Loans { get; set; }
+
+        public List<BookStock>? BookStocks { get; set; }
 
         public float GetTotalFine(List<Loan>? loans)
         {

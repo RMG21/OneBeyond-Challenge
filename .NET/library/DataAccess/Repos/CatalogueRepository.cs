@@ -17,10 +17,8 @@ namespace OneBeyondApi.DataAccess
                     .Include(x => x.Loan)?
                     .ThenInclude(x => x.Book)
                     .ThenInclude(x => x.Author)
-                    .Include(x => x.OnLoanTo)
-                    .ThenInclude(x => x.Loans)?
                     .Include(x => x.Loan)?
-                    .ThenInclude(x => x.Fine)
+                    .ThenInclude(x => x.Fine)?
                     .ToList();
                 return list;
             }
@@ -34,7 +32,6 @@ namespace OneBeyondApi.DataAccess
                     .Include(x => x.Loan)
                     .ThenInclude(x => x.Book)?
                     .ThenInclude(x => x.Author)
-                    .Include(x => x.OnLoanTo)
                     .AsQueryable();
 
                 if (search != null && list.Any(x => x.Loan != null))

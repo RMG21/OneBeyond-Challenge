@@ -66,7 +66,6 @@ namespace OneBeyondApi
                 ISBN = "3134324111"
             };
 
-
             var Fine1 = new Fine
             {
                 Id = new Guid(),
@@ -128,20 +127,20 @@ namespace OneBeyondApi
                 Id = new Guid(),
                 Name = "Dave Smith",
                 EmailAddress = "dave@smithy.com",
-                Loans = new List<Loan> { new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine1, Book = landOfHiddenLeaf },
-                                        new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine2, Book = theFourthGreatNinjaWar }
-                                        }
-            
-            };
+                BookStocks = new List<BookStock> { new BookStock {Id = new Guid(), Loan = new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine1, Book = landOfHiddenLeaf },},
+                                                   new BookStock {Id = new Guid(), Loan = new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine2, Book = theFourthGreatNinjaWar }
+                                                   } }
+                };
 
             var lianaJames = new Borrower
             {
                 Id = new Guid(),
                 Name = "Liana James",
                 EmailAddress = "liana@gmail.com",
-                Loans = new List<Loan> { new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine3, Book = landOfHiddenLeaf },
-                                        new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine4, Book = theFourthGreatNinjaWar }
-                                        }
+                BookStocks = new List<BookStock> { new BookStock {Id = new Guid(), Loan = new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine3, Book = landOfHiddenLeaf },},
+                                                   new BookStock {Id = new Guid(), Loan = new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine4, Book = theFourthGreatNinjaWar }
+                                                        },
+                }
             };
 
             var leBronJames = new Borrower
@@ -149,9 +148,8 @@ namespace OneBeyondApi
                 Id = new Guid(),
                 Name = "LeBron James",
                 EmailAddress = "LB@gmail.com",
-                Loans = new List<Loan> { new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine5, Book = landOfHiddenLeaf },
-                                        new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine6, Book = theFourthGreatNinjaWar }
-                                        }
+                BookStocks = new List<BookStock> { new BookStock {Id = new Guid(), Loan = new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine5, Book = landOfHiddenLeaf },},
+                                                   new BookStock {Id = new Guid(), Loan = new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine6, Book = theFourthGreatNinjaWar }}}
             };
 
             var narutoUzimaki = new Borrower
@@ -159,9 +157,8 @@ namespace OneBeyondApi
                 Id = new Guid(),
                 Name = "Naruto Uzimaki",
                 EmailAddress = "NU@gmail.ninj",
-                Loans = new List<Loan> { new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine7, Book = landOfHiddenLeaf },
-                                        new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine8, Book = theFourthGreatNinjaWar }
-                                        }
+                BookStocks = new List<BookStock> { new BookStock {Id = new Guid(), Loan = new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine5, Book = landOfHiddenLeaf },},
+                                                   new BookStock {Id = new Guid(), Loan = new Loan { Id = new Guid(), Active = true, StartDate = DateTime.Now, EndDate = DateTime.Now, ExtentionDate = DateTime.Now, Fine = Fine6, Book = theFourthGreatNinjaWar }}}
             };
             
             var loan1 = new Loan
@@ -208,31 +205,28 @@ namespace OneBeyondApi
                 Book = theFourthGreatNinjaWar
             };
 
-
             var bookOnLoanUntilToday = new BookStock {
-                OnLoanTo = daveSmith,
+                Id = new Guid(),
                 Loan = loan1
             };
 
             var bookNotOnLoan = new BookStock
             {
-                OnLoanTo = null,
+                Id = new Guid(),
                 Loan = loan2
             };
 
             var bookOnLoanUntilNextWeek = new BookStock
             {
-                OnLoanTo = lianaJames,
+                Id = new Guid(),
                 Loan = loan3
             };
 
             var rustBookStock = new BookStock
             {
-                OnLoanTo = null,
+                Id = new Guid(),
                 Loan = loan4
             };
-
-            
 
             using (var context = new LibraryContext())
             {
@@ -265,7 +259,6 @@ namespace OneBeyondApi
                 context.Fines.Add(Fine4);
 
                 context.SaveChanges();
-
             }
         }
     }

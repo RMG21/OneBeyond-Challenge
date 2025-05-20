@@ -15,9 +15,11 @@ namespace OneBeyondApi.DataAccess
             using (var context = new LibraryContext())
             {
                 var list = context.Borrowers
-                    .Include(x => x.Loans)?
+                    .Include(x => x.BookStocks)?
+                    .ThenInclude(x => x.Loan)?
                     .ThenInclude(x => x.Fine)?
-                    .Include(x => x.Loans)?
+                    .Include(x => x.BookStocks)?
+                    .ThenInclude(x => x.Loan)?
                     .ThenInclude(x => x.Book)
                     .ThenInclude(x =>x.Author)
                     .ToList();
