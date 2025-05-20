@@ -45,7 +45,7 @@ namespace OneBeyondApi
             var rustBook = new Book
             {
                 Name = "Rust Development Cookbook",
-                Format = BookFormat.Paperback,
+                Format = BookFormat.Magazine,
                 Author = margaretJones,
                 ISBN = "3134324111"
             };
@@ -53,7 +53,7 @@ namespace OneBeyondApi
             var landOfHiddenLeaf = new Book
             {
                 Name = "Land Of The Hidden Leaf",
-                Format = BookFormat.Paperback,
+                Format = BookFormat.CompactDisc,
                 Author = masashiKishimoto,
                 ISBN = "3134324111"
             };
@@ -61,7 +61,7 @@ namespace OneBeyondApi
             var theFourthGreatNinjaWar = new Book
             {
                 Name = "The Fourth Great Ninja War",
-                Format = BookFormat.Paperback,
+                Format = BookFormat.Periodical,
                 Author = masashiKishimoto,
                 ISBN = "3134324111"
             };

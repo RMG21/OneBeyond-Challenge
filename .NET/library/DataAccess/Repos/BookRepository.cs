@@ -1,4 +1,5 @@
-﻿using OneBeyondApi.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using OneBeyondApi.Model;
 
 namespace OneBeyondApi.DataAccess
 {
@@ -12,6 +13,7 @@ namespace OneBeyondApi.DataAccess
             using (var context = new LibraryContext())
             {
                 var list = context.Books
+                    .Include(x => x.Author)
                     .ToList();
                 return list;
             }
