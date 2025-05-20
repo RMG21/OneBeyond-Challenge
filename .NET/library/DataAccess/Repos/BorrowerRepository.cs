@@ -5,10 +5,10 @@ namespace OneBeyondApi.DataAccess
 {
     public class BorrowerRepository : IBorrowerRepository
     {
-        private readonly IOnLoanRepository _onLoanRepository;
-        public BorrowerRepository(IOnLoanRepository onLoanRepository)
+        //private readonly IOnLoanRepository _onLoanRepository;
+        public BorrowerRepository()
         {
-            _onLoanRepository = onLoanRepository;
+            //_onLoanRepository = onLoanRepository;
         }
         public List<Borrower> GetBorrowers()
         {
@@ -37,7 +37,7 @@ namespace OneBeyondApi.DataAccess
 
         public void ReserveBook(BookStock bookToReserve)
         {
-            var allActiveLoans =_onLoanRepository.GetAllActiveLoans();
+            //var allActiveLoans =_onLoanRepository.GetAllActiveLoans();
             throw new NotImplementedException();
         }
     }
