@@ -43,7 +43,6 @@ namespace OneBeyondApi.DataAccess
                         list = list.Where(x => x.Loan.Book.Name.Contains(search.BookName));
                     }
                 }
-                    
                 return list.ToList();
             }
         }
